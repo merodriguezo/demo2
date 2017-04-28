@@ -3,7 +3,7 @@ applications:
 - name: ChatBotCH
   command: npm start
   path: .
-  memory: 512M
+  memory: 128M
   instances: 1
   env:
     NPM_CONFIG_PRODUCTION: false
