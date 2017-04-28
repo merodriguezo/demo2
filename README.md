@@ -1,5 +1,4 @@
-# Conversation Sample Application [![Build Status](https://travis-ci.org/watson-developer-cloud/conversation-simple.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/conversation-simple) [![codecov.io](https://codecov.io/github/watson-developer-cloud/conversation-simple/coverage.svg?branch=master)](https://codecov.io/github/watson-developer-cloud/conversation-simple?branch=master)
-
+# Conversation Sample Application [![CircleCI](https://circleci.com/gh/Freyja-Folkvangr/ripley-conversation.svg?style=svg&circle-token=c2bed7dec1b983fc007fc98ed3460089cafe461c)](https://circleci.com/gh/Freyja-Folkvangr/ripley-conversation)
 This Node.js app demonstrates the Conversation service in a simple chat interface simulating a cognitive car dashboard.
 
 ![Demo](readme_images/demo.gif)
