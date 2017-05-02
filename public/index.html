@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Asistente Virtual</title>
@@ -9,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <meta property="og:description" content="Sample application that shows how to use the Conversation API to identify user intents" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/app.css">
 </head>
@@ -19,21 +21,36 @@
   </div>
   
   <header>
-  	<span id="logo"></span>
+  	<div class="content">
+      <h1><a href="http://simple.ripley.cl" target="_blank" id="logo">Ripley.com</a></h1>
+      <button id="menu-button"><img src="img/menu.svg" alt="Icono menu" /> Menú</button>
+      <nav id="main-menu">
+        <span class="overlay"></span>
+        <ul id="menu-container">
+          <li><a href="http://simple.ripley.cl" target="_blank">Ir a Ripley.com</a></li>
+          <li><a href="http://simple.ripley.cl/minisitios/estatico/servicio_cliente/" target="_blank">Servicio al cliente</a></li>
+          <li><a href="tel:6002300222">600 230 02 22 <span>Servicio al cliente</span></a></li>
+          <li><a href="tel:6005202020">600 520 20 20 <span>Ventas telefónicas (opción 2)</span></a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   
   <div id="contentParent" class="responsive-columns-wrapper">
     <div id="chat-column-holder" class="responsive-column content-column">
+      <h2>¿Necesitas ayuda?</h2>
       <div class="chat-column" style="padding-bottom: 1.625rem; height:95%">
         <div id="scrollingChat"></div>
         <label for="textInput" class="inputOutline">
           <input id="textInput" class="input responsive-column"
-            placeholder="Escríbeme..." type="text"
+            placeholder="Escribe aqu&iacute;..." type="text"
             onkeydown="ConversationPanel.inputKeyDown(event, this)">
+            <button id="btn-start-recording" style="margin-top:2px;">Grabar pregunta</button>
+            <button id="btn-submit-message">Enviar</button>
         </label>
-        <button id="btn-start-recording" style="margin-top:2px;">Grabar pregunta</button>
+        
         <!-- <button id="btn-stop-recording" style="margin-top:2px;">Detener grabaci&oacute;n</button>  -->
-		<input type="checkbox" id="cb-voice" style="margin-top:2px;">Activar audio</input>
+		  <label id="audio-checkbox"><input type="checkbox" id="cb-voice" style="margin-top:2px;">Activar audio</label>
       </div>
     </div>
     <div style="display: none;" id="payload-column" class="fixed-column content-column">
@@ -72,6 +89,13 @@
         $("#logo").css("display", "block");
       });
     });
+  </script>
+  <script>
+      $(function() {
+        $("#menu-button").click(function() {
+          $("#main-menu").toggleClass("in");
+        });
+      });
   </script>
 </body>
 </html>
