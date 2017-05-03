@@ -16,6 +16,9 @@
 
 'use strict';
 
+
+
+
 var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
 var Conversation = require('watson-developer-cloud/conversation/v1'); // conversation sdk
@@ -121,7 +124,7 @@ app.post("/sttana",function(req,res){
 	_upload(null, file.audio,function(transcrip){
 		res.json( {text:transcrip});
 	});
-	
+
 });
 
 
@@ -141,10 +144,10 @@ app.post('/api/message', function(req, res) {
     context: req.body.context || {},
     input: req.body.input || {}
   };
-  
 
-  
-  
+
+
+
   // Send the input to the conversation service
   conversation.message(payload, function(err, data) {
     if (err) {
@@ -174,7 +177,7 @@ app.post('/api/message', function(req, res) {
           if (docs.length > 0) { // Si encontró documentos, entonces le retornamos los documentos como respuesta al usuario
             console.log("Se encontraron ", docs.length, " documentos para el query de discovery");
             var responseText = "Excelente pregunta. Encontré algunas ideas para ti:<br>";
-            
+
             for (var i = 0; i < docs.length; i++) { // Le aplicamos estilo a las respuestas
               responseText += "<div class='docContainer'>"+
                 "<div title='Ver contenido' class='docBody'>"+
@@ -202,9 +205,9 @@ app.post('/api/message', function(req, res) {
               "<br>";
             }
             responseText = responseText.replace(/\n/g, "<br>"); //Reemplazamos los \n con <br> para que las respuestas tengan un formato legible en los navegadores
-            
+
             data.output.text.push(responseText+ ". <br> Te puedo ayudar en algo más?"); // Colocamos los documentos como respuesta final al usuario
-            
+
           }
           else { // Si no encontró ningún documento le avisamos al usuario
             console.log("se encontraron 0 documentos en Discovery.");
@@ -216,11 +219,11 @@ app.post('/api/message', function(req, res) {
         return TTSAudioFile(data,function(){res.json(data);});
       });
     }
-	// ---    
+	// ---
     else if (data.context.buscarComuna){
     	console.log("data.context.buscarComuna == true");
     	delete data.context.buscarComuna;
-	
+
       // Verificamos que tengamos el nombre ciudad
       if (data.context.nombreCiudad) {
         // Abrimos una conexión con la base de datos
@@ -228,18 +231,18 @@ app.post('/api/message', function(req, res) {
           if (err) { // Si ocurrió algún error al intentar conectarnos, abortamos y le avisamos al usuario
             console.log("Ocurrió un error al abrir la conexión: ", err.message);
             data.output.text = "Ocurrió un error al abrir la conexión con la base de datos, por favor intenta nuevamente.";
-            
+
             //TTSAudioFile(data);
             //return res.json(data);
             return TTSAudioFile(data,function(){res.json(data);});
           }
-          
-          else { // Si no hubo error abriendo la conexión, pasamos a ejecutar el query de búsqueda de pedido 
+
+          else { // Si no hubo error abriendo la conexión, pasamos a ejecutar el query de búsqueda de pedido
             conn.query("SELECT * FROM COSTOS_ENVIO WHERE LUGAR = '" + data.context.nombreCiudad + "' " , function (err, result) {
               if (err) { // Si ocurrió algún error al ejecutar la consulta, abortamos y le avisamos al usuario
                 console.log("Ocurrió un error al ejecutar la consulta: ", err.message);
                 data.output.text = "Ocurrió un error al ejecutar la consulta, por favor intenta nuevamente.";
-                
+
                 //TTSAudioFile(data);
                 //return res.json(data);
                 return TTSAudioFile(data,function(){res.json(data);});
@@ -248,13 +251,13 @@ app.post('/api/message', function(req, res) {
 
                 if (result.length == 0) { // Si hay 0 resultados, significa que el usuario ingresó un nombre ciudad invalido (no existente)
                   data.output.text = "Lo siento, no tenemos despacho a esa ciudad de momento. Asegurate de que hayas escrito el nombre correctamente. <br> Te puedo ayudar en algo más?";
-                  
+
                 }
                 else { // Si existe un despacho  identificado con el nombre ingresado por usuario
                   data.output.text = "El despacho a " + result[0]['LUGAR'] + " tiene un valor de $ " + result[0]['COSTO'] +
 		            "<br>" +
 		            "Te puedo ayudar en algo más?";
-                  
+
                 }
 
                 conn.close(function () { // Verificamos que la conexión no quede abierta luego de ejecutar la consulta satisfactoriamente.
@@ -269,9 +272,9 @@ app.post('/api/message', function(req, res) {
             });
           }
         });
-      }		
-    }    
- // -	
+      }
+    }
+ // -
     else if (data.context.buscarDespacho) {
       console.log("data.context.buscarDespacho == true");
       delete data.context.buscarDespacho; // Eliminamos la variable de contexto buscarDespacho para que las proximas llamadas no siempre invoquen la busqueda de un despacho en la base de datos
@@ -283,17 +286,17 @@ app.post('/api/message', function(req, res) {
           if (err) { // Si ocurrió algún error al intentar conectarnos, abortamos y le avisamos al usuario
             console.log("Ocurrió un error al abrir la conexión: ", err.message);
             data.output.text = "Ocurrió un error al abrir la conexión con la base de datos, por favor intenta nuevamente.";
-            
+
             //TTSAudioFile(data);
             //return res.json(data);
             return TTSAudioFile(data,function(){res.json(data);});
           }
-          else { // Si no hubo error abriendo la conexión, pasamos a ejecutar el query de búsqueda de pedido 
+          else { // Si no hubo error abriendo la conexión, pasamos a ejecutar el query de búsqueda de pedido
             conn.query("SELECT * FROM ESTADO_DESPACHO WHERE IDPEDIDO = " + data.context.numeroDespacho, function (err, result) {
               if (err) { // Si ocurrió algún error al ejecutar la consulta, abortamos y le avisamos al usuario
                 console.log("Ocurrió un error al ejecutar la consulta: ", err.message);
                 data.output.text = "Ocurrió un error al ejecutar la consulta, por favor intenta nuevamente.";
-                
+
                 //TTSAudioFile(data);
                 //return res.json(data);
                 return TTSAudioFile(data,function(){res.json(data);});
@@ -307,10 +310,10 @@ app.post('/api/message', function(req, res) {
                 	if (result[0]['ESTADO']=="atrasado"){
                 	data.output.text = "Lamentamos informarle que el pedido con #" + result[0]['IDPEDIDO'] + " con destino a " + result[0]['DIRECCION'] + " se encuentra " + result[0]['ESTADO'] + ", nuestros ejecutivos se pondrán en contacto a la brevedad con usted para coordinar una pronta entrega. Te puedo ayudar en algo más?";
                 	} else if (result[0]['ESTADO']=="en camino"){
-                	data.output.text = "El pedido con #" + result[0]['IDPEDIDO'] + " con destino a " + result[0]['DIRECCION'] + " se encuentra " + result[0]['ESTADO'] + ", llegará de acuerdo a lo planificado. Te puedo ayudar en algo más?";   		            	
+                	data.output.text = "El pedido con #" + result[0]['IDPEDIDO'] + " con destino a " + result[0]['DIRECCION'] + " se encuentra " + result[0]['ESTADO'] + ", llegará de acuerdo a lo planificado. Te puedo ayudar en algo más?";
                 	}
                 	else{
-                    data.output.text = "El pedido con #" + result[0]['IDPEDIDO'] + " con destino a " + result[0]['DIRECCION'] + " se encuentra " + result[0]['ESTADO'] + ". Te puedo ayudar en algo más?";              
+                    data.output.text = "El pedido con #" + result[0]['IDPEDIDO'] + " con destino a " + result[0]['DIRECCION'] + " se encuentra " + result[0]['ESTADO'] + ". Te puedo ayudar en algo más?";
 		            }
 
                 }
@@ -333,7 +336,7 @@ app.post('/api/message', function(req, res) {
       //TTSAudioFile(data);
       return TTSAudioFile(data,function(){res.json(data);});
     }
-    
+
   });
 });
 
@@ -392,7 +395,7 @@ function _upload(response, file, cb) {
       }
     };
 
-    
+
     //--------------------------------------------------------------------------------------------------------------
 }
 
@@ -408,9 +411,9 @@ function unlinkFile(path) {
 //Configuración de http post para generación del audio basado en la rta de watson
 //Pipe the synthesized text to a file.
 function TTSAudioFile (data, cb){
-	
-	
-	
+
+
+
 	var textoConHtml;
 	if(typeof data.output.text == "string"){
 		textoConHtml = data.output.text;
@@ -418,7 +421,7 @@ function TTSAudioFile (data, cb){
 	else{
 		textoConHtml = data.output.text[0];
 	}
-	 
+
 	textoConHtml = textoConHtml.replace(/"/g, "&quot;");
 	paramsTTS.text = striptags(textoConHtml);
 	var fileName = randomstring.generate()+".wav";
