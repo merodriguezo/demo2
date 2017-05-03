@@ -3,15 +3,22 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+@media only screen and (max-width: 600px) {
+  html{
+    height:100%;
+  }
+}
 
 body {
-  font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: url(../img/bg-vehicular.png);
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  background-color: #ffffff;
+  background: #fff;
+}
+@media only screen and (max-width: 600px) {
+  body{
+    height:100%;
+  }
 }
 
 div {
@@ -50,7 +57,12 @@ div {
 #contentParent {
   height: 90%;
 }
-
+@media only screen and (max-width: 600px) {
+  #contentParent {
+    padding: 76px 0 0;
+    height:100%;
+  }
+}
 .responsive-columns-wrapper {
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -61,32 +73,52 @@ div {
 }
 
 .responsive-column {
-  -webkit-flex: 1;
+  /* -webkit-flex: 1;
   -ms-flex: 1;
-  flex: 1;
-  overflow: auto;
+  flex: 1;*/
+  width:100%;
 }
 
 #chat-column-holder {
   text-align: center;
+  padding:30px 0;
+}
+@media only screen and (max-width: 600px) {
+  #chat-column-holder {
+    height:100%;
+  }
+}
+#chat-column-holder h2{
+  text-align: center;
+  margin:0 0 40px;
+  padding:0;
+  display: block;
 }
 
 .chat-column {
-  height: 100%;
+  height: 700px !important;
   padding: 0.9375rem 0 0.625rem 0;
   margin: auto;
   text-align: left;
-  max-width: 25rem;
-  min-width: 9.375rem;
-  border: 1px solid #00B4A0;
-  background: white;
+  width: 100%;
+  max-width: 780px;
+  background: #fff;
+  box-shadow: 0 0 30px 0px #ccc;
+}
+@media only screen and (max-width: 600px) {
+  .chat-column {
+    box-shadow: none;
+    height:90% !important;
+    padding-top: 0 !important;
+    padding:0;
+  }
 }
 
 #scrollingChat {
-  margin: 0.75rem;
+  margin: 0.75rem 1rem;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100% - 4rem);
+  height: calc(100% - 7rem);
 }
 
 .message-inner {
@@ -117,6 +149,19 @@ div {
 .from-user {
   text-align: right;
 }
+.from-user.latest.top {
+  padding:0 40px 0 0;
+}
+.from-user.latest.top .message-inner::after{
+  content:"";
+  background: transparent url(../img/avie-user.svg) center center no-repeat;
+  background-size: 100%;
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  width: 32px;
+  height: 32px;
+}
 
 .from-user .message-inner {
   position: relative;
@@ -124,7 +169,7 @@ div {
   color: #fff;
   letter-spacing: 0.015rem;
   line-height: 1.3125rem;
-  background: #00B4A0;
+  background: #8886bb;
   border-radius: 1.25rem;
   border-bottom-right-radius: 0;
   text-align: left;
@@ -150,7 +195,7 @@ div {
   right: 0;
   height: 0.375rem;
   width: 0.5rem;
-  background: #1cb3a0;
+  background: #8886bb;
 }
 
 .from-user .message-inner:after {
@@ -178,20 +223,18 @@ div {
 
 .from-watson p {
   margin: 0.3125rem;
-  padding: 0 1.25rem;
+  padding: 0 0 0 40px;
 }
 
 .from-watson.latest.top p:before {
-  content: ".";
-  color: #ed1c24;
-  background-image: url("../img/marker_image.png");
-  background-size: 0.3125rem 1.3125rem;
+  content: "";
+  background-image: url("../img/avie-ripley.svg");
+  background-size: 100%;
   position: absolute;
   z-index: 2;
-  left: 0.4375rem;
-  width: 0.3125rem;
-  height: 1.3125rem;
-  line-height: 1.3125rem;
+  left: 0;
+  width: 32px;
+  height: 32px;
 }
 
 #textInput {
@@ -202,12 +245,18 @@ div {
   color: #323232;
   letter-spacing: 0.015rem;
   line-height: 1.3125rem;
-  height: 2.5rem;
-  max-width: 100%;
+  height: 42px;
+  max-width: 80%;
+  display: block;
+  float:left;
   padding-left: 0.125rem;
   margin-bottom: -0.125rem;
-  font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
-
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+}
+@media only screen and (max-width: 600px) {
+  #textInput{
+    max-width:50%;
+  }
 }
 
 #textInput.underline {
@@ -238,11 +287,63 @@ input:-moz-placeholder {
 
 .inputOutline {
   display: block;
-  border-bottom: 0.0625rem solid #aeaeae;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin:15px 40px;
+  padding:4px 10px;
+  box-shadow: 0 0 30px 0px #ccc;
+  overflow: hidden;
 }
-
+@media only screen and (max-width: 600px) {
+  .inputOutline {
+    margin:15px;
+  }
+}
+#btn-start-recording{
+  background: transparent url(../img/micro.svg) center center no-repeat;
+  background-size:55%;
+  height:40px;
+  width:50px;
+  cursor: pointer;
+  padding:0;
+  margin:0;
+  border:none;
+  display: block;
+  float:left;
+  overflow: hidden;
+  text-indent: -9999px;
+}
+#btn-submit-message{
+  background: #8886bb;
+  height:50px;
+  font-family:"Montserrat", Helvetica, sans-serif;
+  font-size: 14px;
+  width:calc(20% - 40px);
+  margin: -4px -10px -4px 0;
+  display: block;
+  float:left;
+  padding: 0 20px;
+  line-height: 40px;
+  color:#fff;
+  border:none;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  #btn-submit-message{
+    width:calc(50% - 40px);
+  }
+}
+#audio-checkbox{
+  margin: 0 0 0 35px;
+  font-size: 12px;
+}
+@media only screen and (max-width: 600px) {
+  #audio-checkbox{
+    margin: 0 0 0 15px;
+  }
+}
+#audio-checkbox input{
+  height:16px;
+  width:16px;
+}
 #textInputDummy {
   position:absolute;
   white-space:pre;
@@ -252,7 +353,7 @@ input:-moz-placeholder {
 }
 
 #payload-column {
-  font-family: Monaco, monospace;
+  font-family: 'Montserrat';
   font-size: 0.75rem;
   letter-spacing: 0;
   line-height: 1.125rem;
@@ -272,7 +373,7 @@ input:-moz-placeholder {
 }
 
 #payload-column .header-text, #payload-column #payload-initial-message {
-  font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   font-size: 1.125rem;
   color: #9E9E9E;
   letter-spacing: 0.01875rem;
@@ -338,119 +439,167 @@ html{
   }
 }
 
-/* IBM Design fonts https://github.ibm.com/Design/fonts */
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/light/h-n-light.eot?') format('eot'),
-  url('../fonts/light/h-n-light.woff2') format('woff2'),
-  url('../fonts/light/h-n-light.woff') format('woff'),
-  url('../fonts/light/h-n-light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/light-italic/h-n-light-italic.eot?') format('eot'),
-  url('../fonts/light-italic/h-n-light-italic.woff2') format('woff2'),
-  url('../fonts/light-italic/h-n-light-italic.woff') format('woff'),
-  url('../fonts/light-italic/h-n-light-italic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/roman/h-n-roman.eot?') format('eot'),
-  url('../fonts/roman/h-n-roman.woff2') format('woff2'),
-  url('../fonts/roman/h-n-roman.woff') format('woff'),
-  url('../fonts/roman/h-n-roman.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/roman-italic/h-n-roman-italic.eot?') format('eot'),
-  url('../fonts/roman-italic/h-n-roman-italic.woff2') format('woff2'),
-  url('../fonts/roman-italic/h-n-roman-italic.woff') format('woff'),
-  url('../fonts/roman-italic/h-n-roman-italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/medium/h-n-medium.eot?') format('eot'),
-  url('../fonts/medium/h-n-medium.woff2') format('woff2'),
-  url('../fonts/medium/h-n-medium.woff') format('woff'),
-  url('../fonts/medium/h-n-medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/medium-italic/h-n-medium-italic.eot?') format('eot'),
-  url('../fonts/medium-italic/h-n-medium-italic.woff2') format('woff2'),
-  url('../fonts/medium-italic/h-n-medium-italic.woff') format('woff'),
-  url('../fonts/medium-italic/h-n-medium-italic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/bold/h-n-bold.eot?') format('eot'),
-  url('../fonts/bold/h-n-bold.woff2') format('woff2'),
-  url('../fonts/bold/h-n-bold.woff') format('woff'),
-  url('../fonts/bold/h-n-bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Helvetica Neue for IBM';
-  src: url('../fonts/bold-italic/h-n-bold-italic.eot?') format('eot'),
-  url('../fonts/bold-italic/h-n-bold-italic.woff2') format('woff2'),
-  url('../fonts/bold-italic/h-n-bold-italic.woff') format('woff'),
-  url('../fonts/bold-italic/h-n-bold-italic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-}
-
-/* IBM Icons */
-@font-face {
-  font-family: 'ibm-icons';
-  src:url('../fonts/ibm-icons.eot?ytcz1z') format('eot'),
-  url('../fonts/ibm-icons.eot?ytcz1z#iefix') format('embedded-opentype'),
-  url('../fonts/ibm-icons.ttf?ytcz1z') format('truetype'),
-  url('../fonts/ibm-icons.woff?ytcz1z') format('woff'),
-  url('../fonts/ibm-icons.svg?ytcz1z#ibm-icons') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* IBM glyphs */
-@font-face {
-  font-family: 'ibm-glyph';
-  src:url('../fonts/ibm-glyphs.eot?1b8643') format('eot'),
-  url('../fonts/ibm-glyphs.eot?1b8643#iefix') format('embedded-opentype'),
-  url('../fonts/ibm-glyphs.ttf?1b8643') format('truetype'),
-  url('../fonts/ibm-glyphs.woff?1b8643') format('woff'),
-  url('../fonts/ibm-glyphs.svg?1b8643#ibm-glyph') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 header {
-	height: 10%;
-    max-height: 78px;
-    max-width: 25rem;
-    margin: auto;
-    z-index: 999;
+  background: #1a1a1a;
+  padding:20px;
+  margin: auto;
+  height:93px;
+  z-index: 999;
 	position: relative;
 }
+@media only screen and (max-width: 600px) {
+  header{
+    height:76px;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+  }
+}
+header h1{
+  margin:0;
+  padding:0;
+  display: block;
+  float:left;
+  width:20%;
+}
 header #logo {
-	background: url(../img/logo.png);
-	display: block;
-	width: 190px;
-	height: 80px;
-  margin: auto;
-  background-size: 100% 100%;
+	background: url(../img/ripley-logo.svg) 0 0 no-repeat;
+  background-size: 100%;
+  margin:0;
+  padding:0;
+  height:52px;
+  width:150px;
+  display: block;
+  text-indent:-9999px;
+  overflow: hidden;
+}
+@media only screen and (max-width: 600px) {
+  header h1{
+    width:100px;
+    height:36px;
+  }
+  header #logo {
+    width:100px;
+    height:36px;
+  }
+}
+#menu-button{
+  color:#fff;
+  background: transparent;
+  margin:0;
+  padding:0;
+  display: none;
+  width:100px;
+  float:right;
+  border:none;
+  font-size: 18px;
+  margin:6px 0;
+}
+#menu-button:focus{
+border:none;
+box-shadow: none;
+outline:none;
+}
+#menu-button img{
+  width:18px;
+  height:18px;
+  vertical-align: middle;
+}
+header nav{
+  display: block;
+  width:80%;
+  float:right;
+}
+header nav ul{
+  margin:0;
+  padding:0;
+  display: block;
+}
+header nav ul li{
+  margin:0;
+  padding:0;
+  width:20%;
+  display: inline-block;
+  vertical-align: middle;
+}
+header nav a{
+  display: block;
+  color:#fff;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+header nav a span{
+  display: block;
+  font-weight: 300;
+  font-size: 11px;
+}
+@media only screen and (max-width: 600px) {
+  #menu-button{
+    display: block;
+  }
+  header nav .overlay{
+    background: rgba(0,0,0,0.6);
+    width:100%;
+    position: fixed;
+    top:76px;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 99;
+  }
+  header nav{
+    display: none;
+  }
+  header nav ul{
+    background: #1a1a1a;
+    width:250px;
+    height:100%;
+    position: fixed;
+    top:76px;
+    right:0;
+    bottom:0;
+    z-index: 999;
+  }
+  header nav ul li{
+    width:100%;
+    display:block;
+  }
+  header nav a{
+    width:100%;
+    display:block;
+    padding:10px 20px;
+    text-align: right;
+  }
+  header nav ul li:nth-child(3) a, header nav ul li:nth-child(4) a{
+    border-top:solid 1px #565656;
+    padding:20px;
+    font-size: 16px;
+  }
+  header nav.in{
+    display: block;
+  }
+}
+.content{
+  max-width:1140px;
+  margin:0 auto;
+  overflow: hidden;
+}
+@media only screen and (max-width: 1000px) {
+  .content{
+    max-width:940px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .content{
+    max-width:720px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .content{
+    max-width:576px;
+  }
 }
 
 .plan {
@@ -501,7 +650,7 @@ header #logo {
  padding-right: 20px;
 }
 .docBodyTitle{
- font-family: 'Helvetica Neue for IBM';
+ font-family: 'Montserrat';
  font-size: 18px;
  color: #5F2788;
  letter-spacing: 0.27px;
@@ -511,7 +660,7 @@ header #logo {
 }
 .docBodySnippet{
  padding-top: 23px;
- font-family: 'Helvetica Neue for IBM';
+ font-family: 'Montserrat';
  font-size: 12px;
  color:#5F2788;
  letter-spacing: 0.2px;
@@ -531,7 +680,7 @@ header #logo {
  margin-left:-36px;
 }
 .modal-header{
- font-family: 'Helvetica Neue for IBM';
+ font-family: 'Montserrat';
  background-color: #311545;
  color: #FFFFFF;
  padding:10px;
@@ -564,7 +713,7 @@ header #logo {
  text-decoration:none;
 }
 .titleText{
- font-family: 'Helvetica Neue for IBM';
+ font-family: 'Montserrat';
  font-size: 12px;
  color: #CD91FF;
  letter-spacing: 0.18px;
@@ -575,7 +724,7 @@ header #logo {
 }
 .bodyText {
  padding: 10px 20px 10px 25px;
- font-family: Helvetica Neue for IBM;
+ font-family: 'Montserrat';
  font-size: 14px;
  color: #262626;
  letter-spacing: 0.27px;
@@ -583,7 +732,7 @@ header #logo {
  min-height: calc(71% - 40px);
 }
 .disclaimer{
- font-family: 'Helvetica Neue Roman for IBM';
+ font-family: 'Montserrat';
  font-size: 13px;
  color: #646364;
  letter-spacing: 0.25px;
