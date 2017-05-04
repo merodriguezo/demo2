@@ -59,7 +59,7 @@ div {
 }
 @media only screen and (max-width: 600px) {
   #contentParent {
-    padding: 76px 0 0;
+    padding: 61px 0 0;
     height:100%;
   }
 }
@@ -91,7 +91,7 @@ div {
 }
 #chat-column-holder h2{
   text-align: center;
-  margin:0 0 40px;
+  margin:0 0 20px;
   padding:0;
   display: block;
 }
@@ -109,7 +109,7 @@ div {
 @media only screen and (max-width: 600px) {
   .chat-column {
     box-shadow: none;
-    height:90% !important;
+    height:96% !important;
     padding-top: 0 !important;
     padding:0 !important;
   }
@@ -450,11 +450,12 @@ header {
 }
 @media only screen and (max-width: 600px) {
   header{
-    height:76px;
+    height:61px;
     position: fixed;
     top:0;
     left:0;
     width:100%;
+    padding:12px 20px;
   }
 }
 header h1{
@@ -540,10 +541,17 @@ header nav a span{
   0% {opacity: 0;}
   100% {opacity: 1;}
 }
-
 @keyframes fadeIn {
   0% {opacity: 0;}
   100% {opacity: 1;}
+}
+@-webkit-keyframes slideIn {
+  0% {right: -250px;}
+  100% {right:0;}
+}
+@keyframes slideIn {
+  0% {right: -250px;}
+  100% {right:0;}
 }
 @media only screen and (max-width: 600px) {
   #menu-button{
@@ -553,16 +561,16 @@ header nav a span{
     background: rgba(0,0,0,0.6);
     width:100%;
     position: fixed;
-    top:76px;
+    top:61px;
     left:0;
     right:0;
     bottom:0;
     z-index: 99;
   }
   header nav#main-menu.in .overlay{
-    animation: fadeIn 2s ease-in-out 2s;
-    -moz-animation: fadeIn 2s ease-in-out 2s;
-    -webkit-animation: fadeIn 2s ease-in-out 2s;
+    animation: fadeIn .2s linear alternate;
+    -moz-animation: fadeIn .2s linear alternate;
+    -webkit-animation: fadeIn .2s linear alternate;
   }
   header nav{
     display: none;
@@ -572,10 +580,15 @@ header nav a span{
     width:250px;
     height:100%;
     position: fixed;
-    top:76px;
+    top:61px;
     right:0;
     bottom:0;
     z-index: 999;
+  }
+  header nav#main-menu.in ul{
+    animation: slideIn .2s linear alternate;
+    -moz-animation: slideIn .2s linear alternate;
+    -webkit-animation: slideIn .2s linear alternate;
   }
   header nav ul li{
     width:100%;
