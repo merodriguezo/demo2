@@ -59,7 +59,7 @@ div {
 }
 @media only screen and (max-width: 600px) {
   #contentParent {
-    padding: 76px 0 0;
+    padding: 61px 0 0;
     height:100%;
   }
 }
@@ -86,11 +86,12 @@ div {
 @media only screen and (max-width: 600px) {
   #chat-column-holder {
     height:100%;
+    padding:30px 0 0;
   }
 }
 #chat-column-holder h2{
   text-align: center;
-  margin:0 0 40px;
+  margin:0 0 20px;
   padding:0;
   display: block;
 }
@@ -108,9 +109,9 @@ div {
 @media only screen and (max-width: 600px) {
   .chat-column {
     box-shadow: none;
-    height:90% !important;
+    height:96% !important;
     padding-top: 0 !important;
-    padding:0;
+    padding:0 !important;
   }
 }
 
@@ -158,7 +159,7 @@ div {
   background-size: 100%;
   position: absolute;
   z-index: 2;
-  right: 0;
+  right: -40px;
   width: 32px;
   height: 32px;
 }
@@ -246,6 +247,7 @@ div {
   letter-spacing: 0.015rem;
   line-height: 1.3125rem;
   height: 42px;
+  width: 80% !important;
   max-width: 80%;
   display: block;
   float:left;
@@ -255,12 +257,9 @@ div {
 }
 @media only screen and (max-width: 600px) {
   #textInput{
+    width:50% !important;
     max-width:50%;
   }
-}
-
-#textInput.underline {
-  border-bottom: 2px solid #00B4A0;
 }
 
 ::-webkit-input-placeholder {
@@ -294,7 +293,7 @@ input:-moz-placeholder {
 }
 @media only screen and (max-width: 600px) {
   .inputOutline {
-    margin:15px;
+    margin:15px 15px 0;
   }
 }
 #btn-start-recording{
@@ -332,13 +331,15 @@ input:-moz-placeholder {
   }
 }
 #audio-checkbox{
+  display:none;
+  /*
   margin: 0 0 0 35px;
   font-size: 12px;
 }
 @media only screen and (max-width: 600px) {
   #audio-checkbox{
     margin: 0 0 0 15px;
-  }
+  }*/
 }
 #audio-checkbox input{
   height:16px;
@@ -449,11 +450,12 @@ header {
 }
 @media only screen and (max-width: 600px) {
   header{
-    height:76px;
+    height:61px;
     position: fixed;
     top:0;
     left:0;
     width:100%;
+    padding:12px 20px;
   }
 }
 header h1{
@@ -535,6 +537,22 @@ header nav a span{
   font-weight: 300;
   font-size: 11px;
 }
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@-webkit-keyframes slideIn {
+  0% {right: -250px;}
+  100% {right:0;}
+}
+@keyframes slideIn {
+  0% {right: -250px;}
+  100% {right:0;}
+}
 @media only screen and (max-width: 600px) {
   #menu-button{
     display: block;
@@ -543,11 +561,16 @@ header nav a span{
     background: rgba(0,0,0,0.6);
     width:100%;
     position: fixed;
-    top:76px;
+    top:61px;
     left:0;
     right:0;
     bottom:0;
     z-index: 99;
+  }
+  header nav#main-menu.in .overlay{
+    animation: fadeIn .2s linear alternate;
+    -moz-animation: fadeIn .2s linear alternate;
+    -webkit-animation: fadeIn .2s linear alternate;
   }
   header nav{
     display: none;
@@ -557,10 +580,15 @@ header nav a span{
     width:250px;
     height:100%;
     position: fixed;
-    top:76px;
+    top:61px;
     right:0;
     bottom:0;
     z-index: 999;
+  }
+  header nav#main-menu.in ul{
+    animation: slideIn .2s linear alternate;
+    -moz-animation: slideIn .2s linear alternate;
+    -webkit-animation: slideIn .2s linear alternate;
   }
   header nav ul li{
     width:100%;
