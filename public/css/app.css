@@ -111,7 +111,7 @@ div {
     box-shadow: none;
     height:90% !important;
     padding-top: 0 !important;
-    padding:0;
+    padding:0 !important;
   }
 }
 
@@ -247,7 +247,7 @@ div {
   letter-spacing: 0.015rem;
   line-height: 1.3125rem;
   height: 42px;
-  width: 80%;
+  width: 80% !important;
   max-width: 80%;
   display: block;
   float:left;
@@ -257,7 +257,7 @@ div {
 }
 @media only screen and (max-width: 600px) {
   #textInput{
-    width:50%;
+    width:50% !important;
     max-width:50%;
   }
 }
@@ -536,6 +536,15 @@ header nav a span{
   font-weight: 300;
   font-size: 11px;
 }
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
 @media only screen and (max-width: 600px) {
   #menu-button{
     display: block;
@@ -549,6 +558,11 @@ header nav a span{
     right:0;
     bottom:0;
     z-index: 99;
+  }
+  header nav#main-menu.in .overlay{
+    animation: fadeIn 2s ease-in-out 2s;
+    -moz-animation: fadeIn 2s ease-in-out 2s;
+    -webkit-animation: fadeIn 2s ease-in-out 2s;
   }
   header nav{
     display: none;
