@@ -229,7 +229,7 @@ div {
 
 .from-watson.latest.top p:before {
   content: "";
-  background-image: url("../img/avie-ripley.svg");
+  background-image: url("../img/Watson_Avatar.png");
   background-size: 100%;
   position: absolute;
   z-index: 2;
