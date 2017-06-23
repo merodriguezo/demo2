@@ -1,9 +1,15 @@
 ---
+declared-services:
+  Conversation-pk:
+    label: Demo Mall Plaza
+    plan: standard
 applications:
-- name: ChatBotCH
+- name: Demo Mall Plaza
   command: npm start
   path: .
   memory: 256M
   instances: 1
+  services:
+  - Conversation-pk
   env:
     NPM_CONFIG_PRODUCTION: false
