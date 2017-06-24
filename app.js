@@ -42,8 +42,8 @@ var conversation = new Conversation({
   url: 'https://gateway.watsonplatform.net/conversation/api',
   version_date: '2017-04-21',
   version: 'v1',
-  username: '1e1ef173-d8b6-4569-b7ba-04e2b7019046',
-  password: 'SEx6GUxkfJba'
+  username: '03503deb-b2fb-4071-9ffd-dd36e5909e50',
+  password: 'Bh1kUYVXJE42'
 });
 
 // Create the service wrapper for Discovery
