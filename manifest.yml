@@ -1,10 +1,10 @@
 ---
 declared-services:
   Conversation-pk:
-    label: Demo Mall Plaza
+    label: Demo Cencosud
     plan: standard
 applications:
-- name: Demo Mall Plaza
+- name: Demo Cencosud
   command: npm start
   path: .
   memory: 256M
