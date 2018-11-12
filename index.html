@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Asistente Virtual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:image" content="conversation.svg" />
+  <meta property="og:title" content="Anfitrion Cruz Verde" />
+  
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <meta property="og:description" content="Sample application that shows how to use the Conversation API to identify user intents" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/app2.css">
+</head>
+<body>
+  <div style="display:none;" id="view-change-button" class="button" onclick="PayloadPanel.togglePanel(event, this)">
+    <img class="option full" src="../img/Chat Button.png">
+    <img class="option not-full" src="../img/Code Button.png">
+  </div>
+  
+  <header>
+  	<div class="content" style="height:125px;">
+      <h1 style="height:125px;"><a href="http://www.cruzverde.cl" target="_blank" id="logo">cruzverde.cl</a></h1>
+    </div>
+  </header>
+  
+  <div id="contentParent" class="responsive-columns-wrapper">
+    <div id="chat-column-holder" class="responsive-column content-column">
+      <h2>¿Necesitas ayuda?</h2>
+      <div class="chat-column" style="padding-bottom: 1.625rem; height:95%">
+        <div id="scrollingChat"></div>
+        <label for="textInput" class="inputOutline">
+          <input id="textInput" class="input responsive-column"
+            placeholder="Escribe aqu&iacute;..." type="text"
+            onkeydown="ConversationPanel.inputKeyDown(event, this)">
+            <button id="btn-start-recording" style="margin-top:2px;">Grabar pregunta</button>
+            <button id="btn-submit-message">Enviar</button>
+        </label>
+        
+        <!-- <button id="btn-stop-recording" style="margin-top:2px;">Detener grabaci&oacute;n</button>  -->
+		  <label id="audio-checkbox"><input type="checkbox" id="cb-voice" style="margin-top:2px;">Activar audio</label>
+      </div>
+    </div>
+    <div style="display: none;" id="payload-column" class="fixed-column content-column">
+      <div id="payload-initial-message">
+        Escríbeme... 
+      </div>
+      <div id="payload-request" class="payload"></div>
+      <div id="payload-response" class="payload"></div>
+    </div>
+  </div>
+  
+  <audio id="audioRtaWatson">
+  	<source src="" type="audio/ogg"> <!-- src changes dynamically -->
+  </audio>
+
+  <script src="js/jquery-3.0.0.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/conversation.js"></script>
+  <script src="js/payload.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/record.js"></script>
+  
+  <!-- js para grabaci�n -->
+  <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"> </script>
+  
+  <script>
+    $(function () {
+      $("#scrollingChat").on("click", ".docBody", function (e) {
+        $(this).next().removeAttr("hidden");
+        $("#logo").css("display", "none");
+      });
+      
+      $("#scrollingChat").on("click", ".close-button", function (e) {
+        $(this).closest(".modal").attr("hidden", "");
+        $("#logo").css("display", "block");
+      });
+    });
+  </script>
+  <script>
+      $(function() {
+        $("#menu-button").click(function() {
+          $("#main-menu").toggleClass("in");
+        });
+      });
+  </script>
+</body>
+</html>
